@@ -43,16 +43,15 @@ public class CarRepository {
                 // Update the existing car with the new information
                 car.setCarName(updatedCar.getCarName());
                 car.setCarColor(updatedCar.getCarColor());
-                // ...
-                return null; // Handle the case where the car is not found
+                car.setCarQuantity(updatedCar.getCarQuantity());
+                return   car; // Handle the case where the car is not found
             }
         }
         return null;
     }
 
     public void delete(String id) {
-        // Implementation for deleting a car based on its ID
-        // ...
+        carData.removeIf(car -> car.getCarId().equals(id));
     }
 
 }
