@@ -5,27 +5,39 @@ import id.ac.ui.cs.advprog.eshop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import  java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-
     @Autowired
-    private  ProductRepository productRepository;
+    private ProductRepository productRepository;
 
     @Override
-    public Product create(Product product){
+    public Product create(Product product) {
         productRepository.create(product);
-        return  product;
+        return product;
     }
 
     @Override
-    public  List<Product> findAll() {
+    public List<Product> findAll() {
         Iterator<Product> productIterator = productRepository.findAll();
         List<Product> allProduct = new ArrayList<>();
         productIterator.forEachRemaining(allProduct::add);
         return allProduct;
+    }
+
+    public Product deleteProductByName(String name) {
+        return productRepository.deleteProductByName(name);
+    }
+
+    public Product findProductByName(String name) {
+        return productRepository.findProductByName(name);
+
+    }
+    @Override
+    public Product editProduct(String name, Product editedProduct) {
+        return productRepository.editProduct(name, editedProduct);
     }
 }
